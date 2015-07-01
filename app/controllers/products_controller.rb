@@ -5,10 +5,15 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+
+    if current_user
+      @review = @product.reviews.build
+    end
   end
 
   def new
     @product = Product.new
+    render "new"
   end
 
   def edit
